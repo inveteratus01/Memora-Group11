@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Memora-Group11-RHVCBFIPG</string>
+    <string name="index_format">%d/%d</string>
+    <string name="correct_count_format">Correct: %d</string>
+    <string name="incorrect_count_format">Incorrect: %d</string>
+    <string name="folder_preferences">FolderPreferences</string>
+    <string name="current_folder_id">currentFolderId</string>
+    <string name="current_folder_name">currentFolderName</string>
+</resources>

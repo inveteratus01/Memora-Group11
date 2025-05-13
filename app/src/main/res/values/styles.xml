@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- res/values/styles.xml -->
+    <style name="Theme.MyPixelApp" parent="Theme.MaterialComponents.DayNight">
+        <!-- Disable Material default button styles -->
+        <item name="materialButtonStyle">@style/Widget.MyPixelButton</item>
+        <item name="android:buttonStyle">@style/Widget.MyPixelButton</item>
+    </style>
+
+    <style name="Widget.MyPixelButton" parent="Widget.AppCompat.Button">
+        <item name="android:background">@drawable/button_pixel</item>
+        <item name="android:textColor">#003366</item>
+        <item name="android:fontFamily">@font/pxob</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:includeFontPadding">false</item>
+        <item name="android:minWidth">120dp</item>
+        <item name="android:minHeight">48dp</item>
+    </style>
+</resources>

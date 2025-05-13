@@ -1,0 +1,59 @@
+package com.example.memora_group11_rhvcbfipg.ui.score;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import com.example.memora_group11_rhvcbfipg.R;
+import com.example.memora_group11_rhvcbfipg.ui.cardflip.CardFlip;
+import com.example.memora_group11_rhvcbfipg.ui.wordlist.WordListActivity;
+
+public class ScoreActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_score);
+        setTitle(getFolderNameFromSharedPreferences());
+
+        int correctCount = getIntent().getIntExtra("correctCount", 0);
+        int incorrectCount = getIntent().getIntExtra("incorrectCount", 0);
+
+        TextView correctCountTextView = findViewById(R.id.correctCount);
+        TextView incorrectCountTextView = findViewById(R.id.incorrectCount);
+
+        correctCountTextView.setText(String.valueOf(correctCount));
+        incorrectCountTextView.setText(String.valueOf(incorrectCount));
+
+        Button btnReviewAgain = findViewById(R.id.reviewAgainButton);
+        Button btnWordListScoreDash = findViewById(R.id.wordListScoreDashButton);
+
+        btnReviewAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ScoreActivity.this, CardFlip.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+        btnWordListScoreDash.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ScoreActivity.this, WordListActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+    }
+
+    private String getFolderNameFromSharedPreferences() {
+        SharedPreferences sharedPreferences = getSharedPreferences(getString(R.string.folder_preferences), MODE_PRIVATE);
+        return sharedPreferences.getString(getString(R.string.current_folder_name), "Words");
+    }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Main background fill -->
+    <solid android:color="#B08A6A" />
+
+    <!-- Pixelated border effect -->
+    <stroke
+        android:width="4dp"
+        android:color="#7A5A39" />
+
+    <!-- Creating corner pixels instead of rounded corners -->
+    <corners android:radius="0dp" />
+
+    <!-- Adding pixel-like pattern with gradient -->
+    <padding
+        android:left="8dp"
+        android:top="8dp"
+        android:right="8dp"
+        android:bottom="8dp" />
+</shape>

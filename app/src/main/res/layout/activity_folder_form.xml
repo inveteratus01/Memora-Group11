@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/folderNameEditText"
+        android:layout_width="380dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginEnd="32dp"
+        android:background="@drawable/textbox_pixel"
+        android:fontFamily="@font/pxob"
+        android:hint="Enter Folder Name"
+        android:paddingLeft="12dp"
+        android:paddingTop="8dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="8dp"
+        android:textColor="#FFFFFF"
+        android:textSize="22sp" />
+
+    <Button
+        android:id="@+id/submitFolderButton"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/folderNameEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="Create"
+        android:theme="@style/Theme.MyPixelApp" />
+
+    <Button
+        android:id="@+id/formListDashButton"
+        android:layout_width="380dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/folderNameEditText"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="78dp"
+        android:text="Done"
+        android:theme="@style/Theme.MyPixelApp" />
+</RelativeLayout>
