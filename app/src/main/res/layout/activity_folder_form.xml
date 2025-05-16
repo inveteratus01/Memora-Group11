@@ -2,12 +2,22 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="0dp">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_stars"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:scaleX="1.7"
+        android:scaleY="1.7" />
 
     <EditText
         android:id="@+id/folderNameEditText"
         android:layout_width="380dp"
         android:layout_height="60dp"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="32dp"
         android:layout_marginTop="70dp"
         android:layout_marginEnd="32dp"
@@ -18,7 +28,12 @@
         android:paddingTop="8dp"
         android:paddingRight="12dp"
         android:paddingBottom="8dp"
-        android:textColor="#FFFFFF"
+        android:shadowColor="#FFD700"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="0.5"
+        android:textColor="#5D2800"
+        android:textColorHint="#5D2800"
         android:textSize="22sp" />
 
     <Button
@@ -28,7 +43,9 @@
         android:layout_below="@+id/folderNameEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
+        android:fontFamily="@font/upheavtt"
         android:text="Create"
+        android:textSize="20sp"
         android:theme="@style/Theme.MyPixelApp" />
 
     <Button
@@ -38,6 +55,8 @@
         android:layout_below="@+id/folderNameEditText"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="78dp"
+        android:fontFamily="@font/upheavtt"
         android:text="Done"
+        android:textSize="20sp"
         android:theme="@style/Theme.MyPixelApp" />
 </RelativeLayout>

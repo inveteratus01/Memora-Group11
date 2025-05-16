@@ -1,119 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="0dp">
 
-    <TextView
-        android:id="@+id/textYourScore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="275dp"
-        android:layout_marginBottom="16dp"
-        android:fontFamily="@font/upheavtt"
-        android:text="Your Score"
-        android:textSize="48sp" />
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_stars"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:scaleX="1.7"
+        android:scaleY="1.7" />
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/textYourScore"
-        android:layout_marginTop="16dp"
-        android:orientation="horizontal">
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingHorizontal="24dp">
 
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginEnd="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/score_correct_pixel"
+        <TextView
+            android:id="@+id/textYourScore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp"
+            android:fontFamily="@font/upheavtt"
+            android:text="Your Score"
+            android:textColor="#FFD700"
+            android:textSize="38sp" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:orientation="horizontal">
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/score_correct_pixel"
+                android:elevation="8dp"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/correctCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/upheavtt"
+                    android:gravity="center"
+                    android:text="10"
+                    android:textColor="@color/white"
+                    android:textSize="72sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/correctCountLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/correctCount"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/pxo"
+                    android:gravity="center"
+                    android:text="Correct"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_weight="1"
+                android:background="@drawable/score_incorrect_pixel"
+                android:elevation="8dp"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/incorrectCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/upheavtt"
+                    android:gravity="center"
+                    android:text="15"
+                    android:textColor="@color/white"
+                    android:textSize="72sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/incorrectCountLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/incorrectCount"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/pxo"
+                    android:gravity="center"
+                    android:text="Incorrect"
+                    android:textColor="@color/white"
+                    android:textSize="20sp" />
+            </RelativeLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/reviewAgainButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/button_pixel"
             android:elevation="8dp"
-            android:padding="20dp">
+            android:fontFamily="@font/upheavtt"
+            android:text="Review Again"
+            android:textSize="20sp"
+            android:theme="@style/Theme.MyPixelApp" />
 
-            <TextView
-                android:id="@+id/correctCount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/upheavtt"
-                android:gravity="center"
-                android:text="10"
-                android:textColor="@color/white"
-                android:textSize="96sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/correctCountLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/correctCount"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/pxo"
-                android:gravity="center"
-                android:text="Correct"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-        </RelativeLayout>
-
-        <RelativeLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_marginStart="8dp"
-            android:layout_weight="1"
-            android:background="@drawable/score_incorrect_pixel"
+        <Button
+            android:id="@+id/wordListScoreDashButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/button_pixel"
             android:elevation="8dp"
-            android:padding="20dp">
-
-            <TextView
-                android:id="@+id/incorrectCount"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/upheavtt"
-                android:gravity="center"
-                android:text="15"
-                android:textColor="@color/white"
-                android:textSize="96sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/incorrectCountLabel"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/incorrectCount"
-                android:layout_marginTop="4dp"
-                android:fontFamily="@font/pxo"
-                android:gravity="center"
-                android:text="Incorrect"
-                android:textColor="@color/white"
-                android:textSize="24sp" />
-        </RelativeLayout>
+            android:fontFamily="@font/upheavtt"
+            android:text="Done"
+            android:textSize="20sp"
+            android:theme="@style/Theme.MyPixelApp" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/reviewAgainButton"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="24dp"
-        android:background="@drawable/button_pixel"
-        android:elevation="8dp"
-        android:text="Review Again"
-        android:textSize="14dp"
-        android:theme="@style/Theme.MyPixelApp" />
-
-    <Button
-        android:id="@+id/wordListScoreDashButton"
-        android:layout_width="250dp"
-        android:layout_height="50dp"
-        android:layout_below="@id/linearLayout"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="89dp"
-        android:background="@drawable/button_pixel"
-        android:elevation="8dp"
-        android:text="Done"
-        android:textSize="14dp"
-        android:theme="@style/Theme.MyPixelApp" />
 </RelativeLayout>
-

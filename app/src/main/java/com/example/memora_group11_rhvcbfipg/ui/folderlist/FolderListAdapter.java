@@ -22,6 +22,7 @@ import com.example.memora_group11_rhvcbfipg.database.DBHandler;
 import com.example.memora_group11_rhvcbfipg.modal.FolderModal;
 import com.example.memora_group11_rhvcbfipg.ui.forms.FolderFormActivity;
 import com.example.memora_group11_rhvcbfipg.ui.wordlist.WordListActivity;
+import com.example.memora_group11_rhvcbfipg.utils.SoundButtonListener;
 
 import java.util.ArrayList;
 
@@ -55,8 +56,26 @@ public class FolderListAdapter extends RecyclerView.Adapter<FolderListAdapter.Ca
 
     @Override
     public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
-        FolderModal folderModal = folderModalArrayList.get(position);
-        holder.bind(folderModal);
+        FolderModal folder = folderModalArrayList.get(position);
+        holder.bind(folder);
+
+        // Set click listener with sound on the card view
+        holder.itemView.setOnClickListener(new SoundButtonListener(context,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        SharedPreferences sharedPreferences = context.getSharedPreferences(
+                                context.getString(R.string.folder_preferences),
+                                Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = sharedPreferences.edit();
+                        editor.putInt(context.getString(R.string.current_folder_id), folder.getFolderId());
+                        editor.putString(context.getString(R.string.current_folder_name), folder.getFolderName());
+                        editor.apply();
+
+                        Intent intent = new Intent(context, WordListActivity.class);
+                        context.startActivity(intent);
+                    }
+                }, R.raw.button_click));
     }
 
     @Override
@@ -120,16 +139,16 @@ public class FolderListAdapter extends RecyclerView.Adapter<FolderListAdapter.Ca
 
         public void showContextMenu(View view) {
             PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
-            popupMenu.getMenuInflater().inflate(R.menu.context_menu, popupMenu.getMenu());
+            popupMenu.getMenuInflater().inflate(R.menu.folder_card_menu, popupMenu.getMenu());
             popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                 @Override
                 public boolean onMenuItemClick(MenuItem item) {
                     int itemId = item.getItemId();
 
-                    if (itemId == R.id.menu_edit) {
+                    if (itemId == R.id.menuEditFolder) {
                         editFolder();
                         return true;
-                    } else if (itemId == R.id.menu_delete) {
+                    } else if (itemId == R.id.menuDeleteFolder) {
                         deleteFolder();
                         return true;
                     } else {

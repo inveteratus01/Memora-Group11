@@ -3,29 +3,40 @@
     <!-- Background layer -->
     <item>
         <shape android:shape="rectangle">
-            <!-- Main card fill -->
             <solid android:color="#000000" />
-            <!-- Sharp corners for pixel effect -->
             <corners android:radius="0dp" />
         </shape>
     </item>
 
-    <!-- Border layer -->
+    <!-- Border layer with warm colors for front side -->
     <item android:left="12dp" android:top="12dp" android:right="12dp" android:bottom="12dp">
         <shape android:shape="rectangle">
-            <!-- Card inner area -->
-            <solid android:color="#222222" />
-            <!-- Pixelated border -->
-            <stroke android:width="4dp" android:color="#444444" />
+            <!-- Warm brown tone for front side matching textColor in word_card.xml -->
+            <solid android:color="#332211" />
+            <stroke android:width="4dp" android:color="#884422" />
             <corners android:radius="0dp" />
         </shape>
     </item>
 
-    <!-- Pixelated corner decorations -->
-    <item android:left="24dp" android:top="24dp" android:right="24dp" android:bottom="24dp">
+    <!-- Decorative pixel pattern -->
+    <item android:left="28dp" android:top="28dp" android:right="28dp" android:bottom="28dp">
         <shape android:shape="rectangle">
-            <stroke android:width="2dp" android:color="#666666" android:dashWidth="8dp" android:dashGap="8dp" />
+            <stroke android:width="2dp" android:color="#AA6644" />
             <corners android:radius="0dp" />
+        </shape>
+    </item>
+
+    <!-- Pixel corner accents -->
+    <item android:left="36dp" android:top="36dp" android:right="36dp" android:bottom="36dp">
+        <shape android:shape="rectangle">
+            <stroke android:width="4dp" android:color="#AA7755" android:dashWidth="4dp" android:dashGap="16dp" />
+        </shape>
+    </item>
+
+    <!-- Corner pixels -->
+    <item android:left="16dp" android:top="16dp" android:right="16dp" android:bottom="16dp">
+        <shape android:shape="rectangle">
+            <stroke android:width="6dp" android:color="#AA5522" android:dashWidth="6dp" android:dashGap="90dp" />
         </shape>
     </item>
 </layer-list>

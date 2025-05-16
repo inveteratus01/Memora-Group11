@@ -16,6 +16,7 @@ import com.example.memora_group11_rhvcbfipg.modal.WordModal;
 import com.example.memora_group11_rhvcbfipg.ui.cardflip.CardFlip;
 import com.example.memora_group11_rhvcbfipg.ui.folderlist.FolderListActivity;
 import com.example.memora_group11_rhvcbfipg.ui.forms.WordFormActivity;
+import com.example.memora_group11_rhvcbfipg.utils.SoundButtonListener;
 
 import java.util.ArrayList;
 
@@ -54,30 +55,33 @@ public class WordListActivity extends AppCompatActivity {
 
         btnReview = findViewById(R.id.btnReview);
 
-        btnReview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(WordListActivity.this, CardFlip.class);
-                startActivity(intent);
-            }
-        });
+        btnReview.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(WordListActivity.this, CardFlip.class);
+                        startActivity(intent);
+                    }
+                }, R.raw.button_click));
 
-        findViewById(R.id.fabAdd).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(WordListActivity.this, WordFormActivity.class);
-                startActivity(intent);
-            }
-        });
+        findViewById(R.id.fabAdd).setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(WordListActivity.this, WordFormActivity.class);
+                        startActivity(intent);
+                    }
+                }, R.raw.button_click));
 
-        findViewById(R.id.fabBack).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(WordListActivity.this, FolderListActivity.class);
-                startActivity(intent);
-                finish(); // Close the current activity to prevent it from staying in the back stack
-            }
-        });
+        findViewById(R.id.fabBack).setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(WordListActivity.this, FolderListActivity.class);
+                        startActivity(intent);
+                        finish(); // Close the current activity to prevent it from staying in the back stack
+                    }
+                }, R.raw.button_back, 0.3f));
     }
 
     @Override

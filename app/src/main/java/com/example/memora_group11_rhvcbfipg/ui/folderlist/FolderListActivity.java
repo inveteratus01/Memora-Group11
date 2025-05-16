@@ -9,10 +9,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.memora_group11_rhvcbfipg.MainActivity;
 import com.example.memora_group11_rhvcbfipg.R;
 import com.example.memora_group11_rhvcbfipg.database.DBHandler;
 import com.example.memora_group11_rhvcbfipg.modal.FolderModal;
 import com.example.memora_group11_rhvcbfipg.ui.forms.FolderFormActivity;
+import com.example.memora_group11_rhvcbfipg.utils.SoundButtonListener;
 
 import java.util.ArrayList;
 
@@ -44,19 +46,27 @@ public class FolderListActivity extends AppCompatActivity implements FolderListA
         recyclerViewDashboard.setAdapter(cardAdapter);
 
         Button createFolderButton = findViewById(R.id.createFolderButton);
-        createFolderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createFolder();
-            }
-        });
-    }
+        createFolderButton.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(FolderListActivity.this, FolderFormActivity.class);
+                        startActivity(intent);
+                    }
+                }, R.raw.button_click));
 
-    public void createFolder() {
-        Intent intent = new Intent(this, FolderFormActivity.class);
-        startActivity(intent);
+        Button homeButton = findViewById(R.id.homeButton);
+        homeButton.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(FolderListActivity.this, MainActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); // Clear the back stack
+                        startActivity(intent);
+                        finish(); // Close the current activity
+                    }
+                }, R.raw.button_back, 0.3f));
     }
-
     @Override
     public void onFolderDeleted(ArrayList<FolderModal> updatedData) {
         cardAdapter.updateData(updatedData);

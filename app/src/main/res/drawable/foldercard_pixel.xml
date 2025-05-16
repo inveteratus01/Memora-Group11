@@ -1,20 +1,69 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Main background fill -->
-    <solid android:color="#6A7CB0" />
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- PRESSED STATE -->
+    <item android:state_pressed="true">
+        <layer-list>
+            <!-- Darker shadow -->
+            <item android:right="4dp" android:bottom="4dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="#3D0C0C"/>
+                </shape>
+            </item>
 
-    <!-- Pixelated border effect -->
-    <stroke
-        android:width="4dp"
-        android:color="#39487A" />
+            <!-- Main pressed card -->
+            <item android:left="2dp" android:top="2dp" android:right="6dp" android:bottom="6dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="#5D1A1A"/>
+                    <stroke android:width="2dp" android:color="#800000"/>
+                </shape>
+            </item>
 
-    <!-- Creating corner pixels instead of rounded corners -->
-    <corners android:radius="0dp" />
+            <!-- Pressed highlight -->
+            <item android:left="4dp" android:top="4dp" android:right="8dp" android:bottom="8dp">
+                <shape android:shape="rectangle">
+                    <stroke android:width="1dp" android:color="#FFD70040"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
 
-    <!-- Adding pixel-like pattern with gradient -->
-    <padding
-        android:left="8dp"
-        android:top="8dp"
-        android:right="8dp"
-        android:bottom="8dp" />
-</shape>
+    <!-- DEFAULT STATE -->
+    <item>
+        <layer-list>
+            <!-- Shadow -->
+            <item android:right="4dp" android:bottom="4dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="#3D0C0C"/>
+                </shape>
+            </item>
+
+            <!-- Main card -->
+            <item android:left="2dp" android:top="2dp" android:right="6dp" android:bottom="6dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="#800000"/>
+                    <stroke android:width="2dp" android:color="#5D1A1A"/>
+                </shape>
+            </item>
+
+            <!-- Highlight -->
+            <item android:left="4dp" android:top="4dp" android:right="8dp" android:bottom="8dp">
+                <shape android:shape="rectangle">
+                    <stroke android:width="1dp" android:color="#FFD70080"/>
+                </shape>
+            </item>
+
+            <!-- Corner pixels -->
+            <item android:left="2dp" android:top="2dp" android:width="2dp" android:height="2dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="#5D1A1A"/>
+                </shape>
+            </item>
+
+            <!-- Additional pixel detail -->
+            <item android:right="8dp" android:bottom="8dp" android:width="2dp" android:height="2dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="#5D1A1A"/>
+                </shape>
+            </item>
+        </layer-list>
+    </item>
+</selector>

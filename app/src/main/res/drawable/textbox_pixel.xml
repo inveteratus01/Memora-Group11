@@ -1,52 +1,36 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Shadow layer (pixelated drop shadow effect) -->
+    <!-- Deep shadow (matches title shadow) -->
     <item android:right="4dp" android:bottom="4dp">
         <shape android:shape="rectangle">
-            <solid android:color="#222222" />
-            <corners android:radius="0dp" />
+            <solid android:color="#5D2800"/> <!-- Dark brown -->
+            <corners android:radius="0dp"/>
         </shape>
     </item>
 
-    <!-- Pixelated border bottom-right corner -->
-    <item android:top="0dp" android:left="0dp" android:right="2dp" android:bottom="2dp">
+    <!-- Main fill (aged parchment) -->
+    <item android:top="2dp" android:left="2dp" android:right="6dp" android:bottom="6dp">
         <shape android:shape="rectangle">
-            <solid android:color="#000000" />
+            <solid android:color="#E6D8A5"/> <!-- Vintage paper -->
+            <stroke android:width="2dp" android:color="#8B4000"/> <!-- Brown border -->
         </shape>
     </item>
 
-    <!-- Main background -->
-    <item android:left="2dp" android:top="2dp" android:right="6dp" android:bottom="6dp">
+    <!-- Inner highlight (gold like title) -->
+    <item android:top="3dp" android:left="3dp" android:right="7dp" android:bottom="7dp">
         <shape android:shape="rectangle">
-            <!-- More vibrant background -->
-            <solid android:color="#4682B4" /> <!-- Steel Blue -->
-
-            <!-- Pixel-style border -->
-            <stroke android:width="2dp" android:color="#000000" />
+            <stroke android:width="1dp" android:color="#FFD70080"/> <!-- Gold at 50% opacity -->
         </shape>
     </item>
 
-    <!-- Inner highlight for retro effect (top and left) -->
-    <item android:left="4dp" android:top="4dp" android:right="8dp" android:bottom="8dp">
+    <!-- Pixel corners -->
+    <item android:left="2dp" android:top="2dp" android:width="2dp" android:height="2dp">
         <shape android:shape="rectangle">
-            <stroke android:width="1dp" android:color="#ADD8E6" /> <!-- Light Blue -->
-            <solid android:color="@android:color/transparent" />
+            <solid android:color="#8B4000"/> <!-- Brown pixel -->
         </shape>
     </item>
-
-    <!-- Diagonal pixel effect (top left corner) -->
-    <item android:left="2dp" android:top="2dp" android:right="0dp" android:bottom="0dp"
-        android:width="2dp" android:height="2dp">
+    <item android:right="2dp" android:bottom="2dp" android:width="2dp" android:height="2dp">
         <shape android:shape="rectangle">
-            <solid android:color="#000000" />
-        </shape>
-    </item>
-
-    <!-- Diagonal pixel effect (bottom right corner) -->
-    <item android:left="0dp" android:top="0dp" android:right="2dp" android:bottom="2dp"
-        android:width="2dp" android:height="2dp">
-        <shape android:shape="rectangle">
-            <solid android:color="#000000" />
+            <solid android:color="#8B4000"/>
         </shape>
     </item>
 </layer-list>

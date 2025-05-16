@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.example.memora_group11_rhvcbfipg.R;
 import com.example.memora_group11_rhvcbfipg.ui.cardflip.CardFlip;
 import com.example.memora_group11_rhvcbfipg.ui.wordlist.WordListActivity;
+import com.example.memora_group11_rhvcbfipg.utils.SoundButtonListener;
 
 public class ScoreActivity extends AppCompatActivity {
 
@@ -33,23 +34,25 @@ public class ScoreActivity extends AppCompatActivity {
         Button btnReviewAgain = findViewById(R.id.reviewAgainButton);
         Button btnWordListScoreDash = findViewById(R.id.wordListScoreDashButton);
 
-        btnReviewAgain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ScoreActivity.this, CardFlip.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        btnReviewAgain.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(ScoreActivity.this, CardFlip.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, R.raw.button_click));
 
-        btnWordListScoreDash.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ScoreActivity.this, WordListActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        btnWordListScoreDash.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(ScoreActivity.this, WordListActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, R.raw.button_back, 0.3f));
     }
 
     private String getFolderNameFromSharedPreferences() {

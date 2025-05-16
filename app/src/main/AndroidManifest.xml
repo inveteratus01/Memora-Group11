@@ -16,6 +16,9 @@
             android:name=".ui.statistics.FolderStatisticsActivity"
             android:exported="false" />
         <activity
+            android:name=".ui.about.AboutActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.cardflip.CardFlip"
             android:exported="false" />
         <activity

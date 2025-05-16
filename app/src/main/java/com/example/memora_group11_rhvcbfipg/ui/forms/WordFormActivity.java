@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.memora_group11_rhvcbfipg.R;
 import com.example.memora_group11_rhvcbfipg.database.DBHandler;
+import com.example.memora_group11_rhvcbfipg.utils.SoundButtonListener;
 
 public class WordFormActivity extends AppCompatActivity {
     private DBHandler dbhandler;
@@ -23,37 +24,38 @@ public class WordFormActivity extends AppCompatActivity {
 
         dbhandler = new DBHandler(this);
 
-        Button button = findViewById(R.id.saveButton);
+        Button saveButton = findViewById(R.id.saveButton);
         EditText wordEditText = findViewById(R.id.wordEditText);
         EditText descriptionEditText = findViewById(R.id.descriptionEditText);
 
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String word = wordEditText.getText().toString();
-                String description = descriptionEditText.getText().toString();
-                int folderId = getFolderIdFromSharedPreferences();
+        saveButton.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String word = wordEditText.getText().toString();
+                        String description = descriptionEditText.getText().toString();
+                        int folderId = getFolderIdFromSharedPreferences();
 
-                if (word.isEmpty() || description.isEmpty()) {
-                    Toast.makeText(WordFormActivity.this, "Please enter all values", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                        if (word.isEmpty() || description.isEmpty()) {
+                            Toast.makeText(WordFormActivity.this, "Please enter all values", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                dbhandler.addWord(folderId, word, description);
-                Toast.makeText(WordFormActivity.this, "Word has been added", Toast.LENGTH_SHORT).show();
-                wordEditText.setText("");
-                descriptionEditText.setText("");
-            }
-        });
+                        dbhandler.addWord(folderId, word, description);
+                        Toast.makeText(WordFormActivity.this, "Word has been added", Toast.LENGTH_SHORT).show();
+                        wordEditText.setText("");
+                        descriptionEditText.setText("");
+                    }
+                }, R.raw.button_success, 3.0f));
 
         Button wordListDashButton = findViewById(R.id.wordListDashButton);
-        wordListDashButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Return to the WordListActivity
-                finish(); // This closes the current activity and returns to the previous one in the stack
-            }
-        });
+        wordListDashButton.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        finish(); // Return to the previous activity (Word List)
+                    }
+                }, R.raw.button_back, 0.3f));
     }
 
     private int getFolderIdFromSharedPreferences() {

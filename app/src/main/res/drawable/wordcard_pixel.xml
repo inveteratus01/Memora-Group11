@@ -1,20 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <!-- Main background fill -->
-    <solid android:color="#B08A6A" />
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shadow layer -->
+    <item android:right="5dp" android:bottom="5dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#5D2800"/> <!-- Dark brown shadow matching your text shadows -->
+            <corners android:radius="0dp"/> <!-- Square corners for pixel aesthetic -->
+        </shape>
+    </item>
 
-    <!-- Pixelated border effect -->
-    <stroke
-        android:width="4dp"
-        android:color="#7A5A39" />
+    <!-- Main card body with gold color -->
+    <item android:right="5dp" android:bottom="5dp" android:left="1dp" android:top="1dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFD700"/> <!-- Gold color matching your title text -->
+            <stroke android:width="3dp" android:color="#8B4000"/> <!-- Brown border -->
+            <corners android:radius="0dp"/>
+        </shape>
+    </item>
 
-    <!-- Creating corner pixels instead of rounded corners -->
-    <corners android:radius="0dp" />
+    <!-- Inner border accent -->
+    <item android:right="7dp" android:bottom="7dp" android:left="3dp" android:top="3dp">
+        <shape android:shape="rectangle">
+            <stroke android:width="2dp" android:color="#8B4000"/> <!-- Brown inner border -->
+            <corners android:radius="0dp"/>
+        </shape>
+    </item>
 
-    <!-- Adding pixel-like pattern with gradient -->
-    <padding
-        android:left="8dp"
-        android:top="8dp"
-        android:right="8dp"
-        android:bottom="8dp" />
-</shape>
+    <!-- Pixel corner details -->
+    <item android:left="1dp" android:top="1dp" android:width="2dp" android:height="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#8B4000"/> <!-- Brown pixel corner -->
+        </shape>
+    </item>
+    <item android:right="5dp" android:bottom="5dp" android:width="2dp" android:height="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#8B4000"/> <!-- Brown pixel corner -->
+        </shape>
+    </item>
+
+    <!-- Extra pixel details for enhanced look -->
+    <item android:left="3dp" android:top="3dp" android:width="2dp" android:height="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#DAA520"/> <!-- Darker gold pixel -->
+        </shape>
+    </item>
+    <item android:right="7dp" android:bottom="7dp" android:width="2dp" android:height="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#DAA520"/> <!-- Darker gold pixel -->
+        </shape>
+    </item>
+</layer-list>

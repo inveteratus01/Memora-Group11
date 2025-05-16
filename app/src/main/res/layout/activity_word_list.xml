@@ -4,22 +4,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     tools:context=".MainActivity">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_stars"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:scaleX="1.7"
+        android:scaleY="1.7" />
 
     <LinearLayout
         android:id="@+id/topButtonsLayout"
-        android:layout_width="match_parent"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/btnReview"
-            android:layout_width="0dp"
+            android:layout_width="380dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="70dp"
             android:layout_weight="1"
+            android:fontFamily="@font/upheavtt"
             android:text="Review"
+            android:textSize="20sp"
             android:theme="@style/Theme.MyPixelApp" />
 
     </LinearLayout>
@@ -31,9 +42,10 @@
         android:layout_below="@id/topButtonsLayout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="400dp"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:fontFamily="@font/pxo"
-        android:text="Add words to get started"
+        android:text="Add words to get started."
+        android:textColor="#FFD700"
         android:visibility="gone" />
 
     <androidx.recyclerview.widget.RecyclerView
@@ -44,26 +56,35 @@
         android:layout_marginTop="16dp"
         android:scrollbars="vertical" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <!-- Replace the standard FABs with custom buttons that have pressed states -->
+    <ImageButton
         android:id="@+id/fabBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentBottom="true"
         android:layout_toStartOf="@id/fabAdd"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/button_pixel_pressed"
         android:contentDescription="Go back"
-        app:srcCompat="@android:drawable/ic_menu_revert" />
+        android:src="@android:drawable/ic_menu_revert"
+        android:padding="12dp"
+        android:scaleType="fitCenter"
+        app:tint="#FFD700" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <ImageButton
         android:id="@+id/fabAdd"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
+        android:background="@drawable/button_pixel_pressed"
         android:contentDescription="Add button"
-        app:srcCompat="@android:drawable/ic_input_add" />
+        android:src="@android:drawable/ic_input_add"
+        android:padding="12dp"
+        android:scaleType="fitCenter"
+        app:tint="#FFD700" />
 
 </RelativeLayout>

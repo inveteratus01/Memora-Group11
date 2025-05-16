@@ -6,6 +6,7 @@ import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -18,6 +19,7 @@ import com.example.memora_group11_rhvcbfipg.modal.WordModal;
 import com.example.memora_group11_rhvcbfipg.ui.forms.WordFormActivity;
 import com.example.memora_group11_rhvcbfipg.ui.score.ScoreActivity;
 import com.example.memora_group11_rhvcbfipg.ui.wordlist.WordListActivity;
+import com.example.memora_group11_rhvcbfipg.utils.SoundButtonListener;
 
 import java.util.ArrayList;
 
@@ -47,20 +49,33 @@ public class CardFlip extends AppCompatActivity {
 
         Button btnCorrect = findViewById(R.id.btnCorrect);
         Button btnIncorrect = findViewById(R.id.btnIncorrect);
-        btnIncorrect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                incorrectCount++;
-                showNextWordOrScore();
-            }
-        });
-        btnCorrect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                correctCount++;
-                showNextWordOrScore();
-            }
-        });
+
+        btnIncorrect.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        incorrectCount++;
+                        showNextWordOrScore();
+                    }
+                }, R.raw.button_click));
+
+        btnCorrect.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        correctCount++;
+                        showNextWordOrScore();
+                    }
+                }, R.raw.button_click));
+
+        Button exitButton = findViewById(R.id.exitButton);
+        exitButton.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish(); // Return to the previous activity (Word List)
+                    }
+                }, R.raw.button_back, 0.4f));
     }
 
     private void changeCameraDistance() {
@@ -81,6 +96,12 @@ public class CardFlip extends AppCompatActivity {
     }
 
     public void flipCard(View view) {
+        // Play flip sound
+        MediaPlayer mediaPlayer = MediaPlayer.create(this, R.raw.card_flip);
+        mediaPlayer.setVolume(2f, 2f);
+        mediaPlayer.start();
+        mediaPlayer.setOnCompletionListener(MediaPlayer::release);
+
         if (!mIsBackVisible) {
             mCardBackLayout.setVisibility(View.VISIBLE); // Ensure back layout is visible
             mSetRightOut.setTarget(mCardFrontLayout);

@@ -152,4 +152,15 @@ public class DBHandler extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS " + WORDS_TABLE_NAME);
         onCreate(db);
     }
+
+    public void updateWord(int id, String wordName, String wordDescription) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+
+        values.put("word_name", wordName);
+        values.put("word_description", wordDescription);
+
+        db.update("words_table", values, "id=?", new String[]{String.valueOf(id)});
+        db.close();
+    }
 }

@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.memora_group11_rhvcbfipg.R;
 import com.example.memora_group11_rhvcbfipg.database.DBHandler;
 import com.example.memora_group11_rhvcbfipg.ui.folderlist.FolderListActivity;
+import com.example.memora_group11_rhvcbfipg.utils.SoundButtonListener;
 
 public class FolderFormActivity extends AppCompatActivity {
     private DBHandler dbhandler;
@@ -37,33 +38,35 @@ public class FolderFormActivity extends AppCompatActivity {
         } else {
             setTitle("Create Folder");
         }
-        submitFolderButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String folderName = folderNameEditText.getText().toString();
+        submitFolderButton.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        String folderName = folderNameEditText.getText().toString();
 
-                if (folderName.isEmpty()) {
-                    Toast.makeText(FolderFormActivity.this, "Please enter folder name", Toast.LENGTH_SHORT).show();
-                    return;
-                }
+                        if (folderName.isEmpty()) {
+                            Toast.makeText(FolderFormActivity.this, "Please enter folder name", Toast.LENGTH_SHORT).show();
+                            return;
+                        }
 
-                if (folderIdToUpdate != -1) {
-                    dbhandler.updateFolderName(folderIdToUpdate, folderName);
-                    Toast.makeText(FolderFormActivity.this, "Folder has been updated", Toast.LENGTH_SHORT).show();
-                } else {
-                    dbhandler.addFolder(folderName);
-                    Toast.makeText(FolderFormActivity.this, "Folder has been created", Toast.LENGTH_SHORT).show();
-                }
-                redirectToFolderList();
-            }
-        });
+                        if (folderIdToUpdate != -1) {
+                            dbhandler.updateFolderName(folderIdToUpdate, folderName);
+                            Toast.makeText(FolderFormActivity.this, "Folder has been updated", Toast.LENGTH_SHORT).show();
+                        } else {
+                            dbhandler.addFolder(folderName);
+                            Toast.makeText(FolderFormActivity.this, "Folder has been created", Toast.LENGTH_SHORT).show();
+                        }
+                        redirectToFolderList();
+                    }
+                }, R.raw.button_success, 3.0f));
 
-        dashboardButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                redirectToFolderList();
-            }
-        });
+        dashboardButton.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        redirectToFolderList();
+                    }
+                }, R.raw.button_back, 0.3f));
     }
 
     private void redirectToFolderList() {

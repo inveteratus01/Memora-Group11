@@ -3,35 +3,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <Button
-        android:id="@+id/homeButton"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="false"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="70dp"
-        android:layout_marginBottom="12dp"
-        android:onClick="createFolder"
-        android:text="HOME"
-        android:theme="@style/Theme.MyPixelApp" />
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_stars"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:scaleX="1.7"
+        android:scaleY="1.7" />
 
-    <Button
-        android:id="@+id/createFolderButton"
-        android:layout_width="200dp"
+    <LinearLayout
+        android:id="@+id/buttonContainer"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="70dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="12dp"
-        android:onClick="createFolder"
-        android:text="Create folder"
-        android:theme="@style/Theme.MyPixelApp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp"
+        android:paddingHorizontal="16dp"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/homeButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/upheavtt"
+            android:text="HOME"
+            android:textSize="20sp"
+            android:theme="@style/Theme.MyPixelApp" />
+
+        <Button
+            android:id="@+id/createFolderButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="30dp"
+            android:layout_weight="1"
+            android:fontFamily="@font/upheavtt"
+            android:text="Create folder"
+            android:textSize="20sp"
+            android:theme="@style/Theme.MyPixelApp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/emptyFolderListMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/createFolderButton"
+        android:layout_below="@id/buttonContainer"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
         android:fontFamily="@font/pxo"
@@ -44,5 +63,7 @@
         android:id="@+id/foldersListRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="140dp" />
+        android:layout_below="@id/buttonContainer"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp" />
 </RelativeLayout>

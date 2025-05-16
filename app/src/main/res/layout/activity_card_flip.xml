@@ -3,8 +3,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="70dp"
-    android:onClick="flipCard">
+    android:background="@drawable/bg_stars"
+    android:onClick="flipCard"
+    android:paddingTop="30dp">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:scaleX="1.7"
+        android:scaleY="1.7"
+        android:src="@drawable/bg_stars" />
+
+    <Button
+        android:id="@+id/exitButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:background="@drawable/button_pixel"
+        android:fontFamily="@font/upheavtt"
+        android:text="EXIT"
+        android:textSize="18sp"
+        android:theme="@style/Theme.MyPixelApp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,13 +36,17 @@
 
         <Button
             android:id="@+id/btnIncorrect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="16dp"
-            android:backgroundTint="#D32F2F"
-            android:text="✖️" />
+            android:background="@drawable/incorrect_button_selector"
+            android:fontFamily="@font/upheavtt"
+            android:text="✖️"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:theme="@style/Theme.MyPixelApp" />
 
         <Space
             android:layout_width="0dp"
@@ -31,6 +57,8 @@
             android:id="@+id/wordIndex"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
+            android:fontFamily="@font/pxo"
+            android:textColor="#FFD700"
             android:textSize="20sp" />
 
         <Space
@@ -40,13 +68,17 @@
 
         <Button
             android:id="@+id/btnCorrect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:backgroundTint="#388E3C"
-            android:text="✔️" />
+            android:background="@drawable/correct_button_selector"
+            android:fontFamily="@font/upheavtt"
+            android:text="✔️"
+            android:textColor="#FFFFFF"
+            android:textSize="24sp"
+            android:theme="@style/Theme.MyPixelApp" />
 
     </LinearLayout>
 

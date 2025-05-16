@@ -8,12 +8,12 @@
         </shape>
     </item>
 
-    <!-- Border layer with different color for answer side -->
+    <!-- Border layer with maroonish-red color scheme for answer side -->
     <item android:left="12dp" android:top="12dp" android:right="12dp" android:bottom="12dp">
         <shape android:shape="rectangle">
-            <!-- Different color for the back/answer side - sky blue tones -->
-            <solid android:color="#223344" />
-            <stroke android:width="4dp" android:color="#446688" />
+            <!-- Maroon base color matching folder card's shadow color -->
+            <solid android:color="#3D0C0C" />
+            <stroke android:width="4dp" android:color="#661111" />
             <corners android:radius="0dp" />
         </shape>
     </item>
@@ -21,7 +21,7 @@
     <!-- Decorative pixel pattern -->
     <item android:left="28dp" android:top="28dp" android:right="28dp" android:bottom="28dp">
         <shape android:shape="rectangle">
-            <stroke android:width="2dp" android:color="#6688AA" />
+            <stroke android:width="2dp" android:color="#882222" />
             <corners android:radius="0dp" />
         </shape>
     </item>
@@ -29,7 +29,14 @@
     <!-- Pixel corner accents -->
     <item android:left="36dp" android:top="36dp" android:right="36dp" android:bottom="36dp">
         <shape android:shape="rectangle">
-            <stroke android:width="4dp" android:color="#5577AA" android:dashWidth="4dp" android:dashGap="16dp" />
+            <stroke android:width="4dp" android:color="#AA3333" android:dashWidth="4dp" android:dashGap="16dp" />
+        </shape>
+    </item>
+
+    <!-- Corner pixels (matching the front card structure) -->
+    <item android:left="16dp" android:top="16dp" android:right="16dp" android:bottom="16dp">
+        <shape android:shape="rectangle">
+            <stroke android:width="6dp" android:color="#770000" android:dashWidth="6dp" android:dashGap="90dp" />
         </shape>
     </item>
 </layer-list>

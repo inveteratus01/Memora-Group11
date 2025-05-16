@@ -8,17 +8,19 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.memora_group11_rhvcbfipg.R;
+import com.example.memora_group11_rhvcbfipg.database.DBHandler;
 import com.example.memora_group11_rhvcbfipg.modal.WordModal;
 
 import java.util.ArrayList;
 
 public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ItemViewHolder> {
 
-    private ArrayList<WordModal> wordModelArrayList;
+    private ArrayList<WordModal> wordModalArrayList;
     private Context context;
+    private DBHandler dbHandler;
 
-    public WordListAdapter(ArrayList<WordModal> wordModelArrayList, Context context) {
-        this.wordModelArrayList = wordModelArrayList;
+    public WordListAdapter(ArrayList<WordModal> wordModalArrayList, Context context) {
+        this.wordModalArrayList = wordModalArrayList;
         this.context = context;
     }
 
@@ -31,13 +33,13 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ItemVi
 
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
-        WordModal item = wordModelArrayList.get(position);
+        WordModal item = wordModalArrayList.get(position);
         holder.bind(item);
     }
 
     @Override
     public int getItemCount() {
-        return wordModelArrayList.size();
+        return wordModalArrayList.size();
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {

@@ -2,47 +2,52 @@
     <!-- DEFAULT STATE -->
     <item android:state_pressed="false">
         <layer-list>
-            <!-- Main light blue color -->
+            <!-- Base color (matches title shadow) -->
             <item>
                 <shape android:shape="rectangle">
-                    <solid android:color="#70C8FF"/>
-                    <corners android:radius="4dp"/> <!-- Subtle rounding -->
+                    <solid android:color="#8B4000"/> <!-- Dark gold-brown -->
+                    <corners android:radius="2dp"/> <!-- Sharp 8-bit corners -->
                 </shape>
             </item>
 
-            <!-- Jagged black border (simulated with dash) -->
+            <!-- Pixel border (solid instead of dashed for better retro look) -->
             <item>
                 <shape android:shape="rectangle">
                     <stroke
                         android:width="2dp"
-                        android:color="#000000"
-                        android:dashWidth="8dp"
-                        android:dashGap="4dp"/>
-                    <corners android:radius="4dp"/>
+                        android:color="#FFD700"/> <!-- Gold like title -->
+                    <corners android:radius="2dp"/>
                 </shape>
             </item>
         </layer-list>
     </item>
 
-    <!-- PRESSED STATE (darker blue) -->
+    <!-- PRESSED STATE -->
     <item android:state_pressed="true">
         <layer-list>
+            <!-- Pressed color (darker) -->
             <item>
                 <shape android:shape="rectangle">
-                    <solid android:color="#3A9BFF"/>
-                    <corners android:radius="4dp"/>
+                    <solid android:color="#5D2800"/> <!-- Darker brown -->
+                    <corners android:radius="2dp"/>
                 </shape>
             </item>
 
-            <!-- Pressed border (thicker dash) -->
+            <!-- Pressed border (thicker) -->
             <item>
                 <shape android:shape="rectangle">
                     <stroke
                         android:width="3dp"
-                        android:color="#000000"
-                        android:dashWidth="6dp"
-                        android:dashGap="3dp"/>
-                    <corners android:radius="4dp"/>
+                        android:color="#FFA500"/> <!-- Orange-gold -->
+                    <corners android:radius="2dp"/>
+                </shape>
+            </item>
+
+            <!-- Pressed "indent" effect -->
+            <item android:top="2dp" android:left="2dp">
+                <shape android:shape="rectangle">
+                    <solid android:color="#40000000"/> <!-- Shadow effect -->
+                    <corners android:radius="2dp"/>
                 </shape>
             </item>
         </layer-list>
