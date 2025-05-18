@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Shadow layer -->
+    <item android:right="4dp" android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#5D2800"/> <!-- Dark brown shadow matching other elements -->
+            <corners android:radius="0dp"/> <!-- Square corners for pixel aesthetic -->
+        </shape>
+    </item>
+
+    <!-- Main bubble body -->
+    <item android:left="2dp" android:top="2dp" android:right="6dp" android:bottom="6dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#AA444444"/> <!-- Dark but more visible background -->
+            <stroke android:width="2dp" android:color="#FFFFFF"/> <!-- White border -->
+            <corners android:radius="0dp"/> <!-- Square corners for pixel aesthetic -->
+        </shape>
+    </item>
+
+    <!-- Inner highlight -->
+    <item android:left="4dp" android:top="4dp" android:right="8dp" android:bottom="8dp">
+        <shape android:shape="rectangle">
+            <stroke android:width="1dp" android:color="#FFD70080"/> <!-- Gold at 50% opacity -->
+            <corners android:radius="0dp"/>
+        </shape>
+    </item>
+
+    <!-- Pixel corners -->
+    <item android:left="2dp" android:top="2dp" android:width="2dp" android:height="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF"/> <!-- White pixel -->
+        </shape>
+    </item>
+    <item android:right="6dp" android:bottom="6dp" android:width="2dp" android:height="2dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFFFFF"/> <!-- White pixel -->
+        </shape>
+    </item>
+</layer-list>

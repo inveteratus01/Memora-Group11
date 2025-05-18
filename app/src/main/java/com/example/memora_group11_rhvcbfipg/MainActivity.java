@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         MediaPlayer startupSound = MediaPlayer.create(this, R.raw.game_start);
-        startupSound.setVolume(1f, 1f); // Set volume to 70%
+        startupSound.setVolume(0.7f, 0.7f); // Set volume to 70%
         startupSound.start();
         startupSound.setOnCompletionListener(MediaPlayer::release);
 

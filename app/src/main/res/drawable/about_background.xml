@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Base background -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#1A1A1A"/> <!-- Very dark background -->
+            <stroke android:width="4dp" android:color="#333333"/> <!-- Dark border -->
+        </shape>
+    </item>
+
+    <!-- Pixel grid effect - horizontal lines -->
+    <item>
+        <shape android:shape="rectangle">
+            <size android:height="1dp"/>
+            <solid android:color="#15FFD700"/> <!-- Gold with low opacity -->
+            <corners android:radius="0dp"/>
+        </shape>
+    </item>
+
+    <!-- Corner pixels for pixel art effect -->
+    <item android:left="0dp" android:top="0dp" android:width="4dp" android:height="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFD700"/> <!-- Gold pixel -->
+        </shape>
+    </item>
+    <item android:right="0dp" android:top="0dp" android:width="4dp" android:height="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFD700"/> <!-- Gold pixel -->
+        </shape>
+    </item>
+    <item android:left="0dp" android:bottom="0dp" android:width="4dp" android:height="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFD700"/> <!-- Gold pixel -->
+        </shape>
+    </item>
+    <item android:right="0dp" android:bottom="0dp" android:width="4dp" android:height="4dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#FFD700"/> <!-- Gold pixel -->
+        </shape>
+    </item>
+
+    <!-- Border overlay with pixel detail -->
+    <item android:left="4dp" android:top="4dp" android:right="4dp" android:bottom="4dp">
+        <shape android:shape="rectangle">
+            <stroke android:width="1dp" android:color="#30FFD700"/> <!-- Gold with low opacity -->
+            <corners android:radius="0dp"/>
+        </shape>
+    </item>
+</layer-list>

@@ -56,6 +56,7 @@
         android:fontFamily="@font/pxo"
         android:padding="20dp"
         android:text="Create a folder to get started"
+        android:textColor="#FFD700"
         android:textSize="20sp"
         android:visibility="gone" />
 

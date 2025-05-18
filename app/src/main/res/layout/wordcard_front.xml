@@ -17,8 +17,19 @@
         style="@style/Base.TextAppearance.AppCompat.Display1"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="60dp"
         android:fontFamily="@font/pxo"
         android:gravity="center"
-        android:textColor="@color/white" />
+        android:textColor="@color/white"
+        android:paddingStart="36dp"
+        android:paddingEnd="36dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp"
+        android:autoSizeTextType="uniform"
+        android:autoSizeMinTextSize="10sp"
+        android:autoSizeMaxTextSize="32sp"
+        android:autoSizeStepGranularity="2sp"
+        android:maxLines="4"
+        android:ellipsize="end" />
 
 </FrameLayout>
