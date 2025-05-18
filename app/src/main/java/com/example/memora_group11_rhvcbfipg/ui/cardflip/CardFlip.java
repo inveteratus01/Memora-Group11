@@ -21,6 +21,7 @@ import com.example.memora_group11_rhvcbfipg.ui.score.ScoreActivity;
 import com.example.memora_group11_rhvcbfipg.ui.wordlist.WordListActivity;
 import com.example.memora_group11_rhvcbfipg.utils.SoundButtonListener;
 
+import java.util.Collections;
 import java.util.ArrayList;
 
 public class CardFlip extends AppCompatActivity {
@@ -139,6 +140,9 @@ public class CardFlip extends AppCompatActivity {
         DBHandler dbHandler = new DBHandler(this);
         int folderId = getFolderIdFromSharedPreferences();
         wordModelArrayList = dbHandler.getWordsByFolderId(folderId);
+
+        Collections.shuffle(wordModelArrayList);
+
         currentWordIndex = 0;
     }
 

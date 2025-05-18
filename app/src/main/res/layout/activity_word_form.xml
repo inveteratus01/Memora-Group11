@@ -17,7 +17,7 @@
         android:scaleY="1.7" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewAddOrEditWord"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textView5"
+        android:id="@+id/textViewAddOrEditDesc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
@@ -40,7 +40,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAddOrEditWord" />
 
     <EditText
         android:id="@+id/wordEditText"
@@ -65,7 +65,7 @@
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAddOrEditDesc" />
 
     <EditText
         android:id="@+id/descriptionEditText"

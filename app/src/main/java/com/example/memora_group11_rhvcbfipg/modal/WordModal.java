@@ -24,4 +24,17 @@ public class WordModal {
         return meaning;
     }
 
+    public int getId() {
+        return wordId;
+    }
+
+    public int getFolderId() {
+        return folderId;
+    }
+
+    // Optional: rename getMeaning() to getDescription() for consistency
+    public String getDescription() {
+        return meaning;
+    }
+
 }

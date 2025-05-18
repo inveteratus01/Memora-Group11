@@ -21,6 +21,7 @@ import com.example.memora_group11_rhvcbfipg.R;
 import com.example.memora_group11_rhvcbfipg.database.DBHandler;
 import com.example.memora_group11_rhvcbfipg.modal.FolderModal;
 import com.example.memora_group11_rhvcbfipg.ui.forms.FolderFormActivity;
+import com.example.memora_group11_rhvcbfipg.ui.score.StatisticsFolderActivity;
 import com.example.memora_group11_rhvcbfipg.ui.wordlist.WordListActivity;
 import com.example.memora_group11_rhvcbfipg.utils.SoundButtonListener;
 
@@ -151,6 +152,9 @@ public class FolderListAdapter extends RecyclerView.Adapter<FolderListAdapter.Ca
                     } else if (itemId == R.id.menuDeleteFolder) {
                         deleteFolder();
                         return true;
+                    } else if (itemId == R.id.menuStatisticsFolder) {
+                        showStatisticsFolder();
+                        return true;
                     } else {
                         return false;
                     }
@@ -187,6 +191,15 @@ public class FolderListAdapter extends RecyclerView.Adapter<FolderListAdapter.Ca
             });
             builder.setNegativeButton("No", null);
             builder.show();
+        }
+
+        private void showStatisticsFolder() {
+            Context context = itemView.getContext();
+            String folderName = textTitle.getText().toString();
+            Intent intent = new Intent(context, StatisticsFolderActivity.class);
+            intent.putExtra("folderId", folderId);
+            intent.putExtra("folderName", folderName);
+            context.startActivity(intent);
         }
 
 
