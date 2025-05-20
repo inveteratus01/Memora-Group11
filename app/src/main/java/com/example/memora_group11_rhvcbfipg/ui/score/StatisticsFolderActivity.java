@@ -6,7 +6,9 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AlertDialog;
@@ -18,6 +20,7 @@ import androidx.core.view.WindowInsetsCompat;
 import com.example.memora_group11_rhvcbfipg.R;
 import com.example.memora_group11_rhvcbfipg.database.DBHandler;
 import com.example.memora_group11_rhvcbfipg.ui.folderlist.FolderListActivity;
+import com.example.memora_group11_rhvcbfipg.utils.SoundButtonListener;
 
 public class StatisticsFolderActivity extends AppCompatActivity {
     private int folderId;
@@ -65,14 +68,15 @@ public class StatisticsFolderActivity extends AppCompatActivity {
         loadStatistics();
 
         Button buttonReturn = findViewById(R.id.buttonReturn);
-        buttonReturn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(StatisticsFolderActivity.this, FolderListActivity.class);
-                startActivity(intent);
-                finish();
-            }
-        });
+        buttonReturn.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(StatisticsFolderActivity.this, FolderListActivity.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                }, R.raw.button_back, 0.4f));
 
         Button buttonResetStats = findViewById(R.id.buttonResetStats);
         buttonResetStats.setOnClickListener(new View.OnClickListener() {
@@ -138,23 +142,72 @@ public class StatisticsFolderActivity extends AppCompatActivity {
     }
 
     private void confirmResetStatistics() {
+        // Create a custom layout for the dialog
+        View dialogView = getLayoutInflater().inflate(R.layout.reset_statistics_dialog, null);
+        TextView titleText = dialogView.findViewById(R.id.dialogTitle);
+        TextView messageText = dialogView.findViewById(R.id.dialogMessage);
+        Button positiveButton = dialogView.findViewById(R.id.buttonPositive);
+        Button negativeButton = dialogView.findViewById(R.id.buttonNegative);
+        ImageView resetIcon = dialogView.findViewById(R.id.resetIcon);
+
+        // Set dialog content
+        titleText.setText("Reset Statistics");
+        messageText.setText("Are you sure you want to reset all statistics for \"" + folderName +
+                "\"?\n\nThis action cannot be undone.");
+        resetIcon.setImageResource(R.drawable.ic_warning);
+
+        // Create and configure the AlertDialog with custom view
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("Reset Statistics");
-        builder.setMessage("Are you sure you want to reset all statistics for this folder?");
-        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                resetStatistics();
-            }
-        });
-        builder.setNegativeButton("No", null);
-        builder.show();
+        builder.setView(dialogView);
+        AlertDialog alertDialog = builder.create();
+
+        // Prevent dialog from closing when touching outside
+        alertDialog.setCanceledOnTouchOutside(false);
+
+        // Set button click listeners
+        positiveButton.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        resetStatistics();
+                        alertDialog.dismiss();
+                    }
+                }, R.raw.button_success, 3.0f));
+
+        negativeButton.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        // Just dismiss the dialog
+                        alertDialog.dismiss();
+                    }
+                }, R.raw.button_back, 0.4f));
+
+        // Show the custom dialog
+        alertDialog.show();
     }
 
     private void resetStatistics() {
         if (folderId != -1) {
+            // Reset stats in database
             dbHandler.addOrUpdateStatistics(folderId, 0, 0, 0, 0, 0, 0);
+
+            // Reload the updated stats
             loadStatistics();
+
+            // Play success sound after reset is complete
+            new SoundButtonListener(this,
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Empty because we only want the sound
+                        }
+                    },
+                    R.raw.button_success, 3.0f
+            ).onClick(null); // Manually trigger the sound
+
+            // Optional: Show confirmation toast
+            Toast.makeText(this, "Statistics reset successfully!", Toast.LENGTH_SHORT).show();
         }
     }
 }

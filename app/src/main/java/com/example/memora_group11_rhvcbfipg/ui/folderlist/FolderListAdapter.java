@@ -2,16 +2,18 @@ package com.example.memora_group11_rhvcbfipg.ui.folderlist;
 
 import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.PopupMenu;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -139,29 +141,49 @@ public class FolderListAdapter extends RecyclerView.Adapter<FolderListAdapter.Ca
         }
 
         public void showContextMenu(View view) {
-            PopupMenu popupMenu = new PopupMenu(view.getContext(), view);
-            popupMenu.getMenuInflater().inflate(R.menu.folder_card_menu, popupMenu.getMenu());
-            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-                @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    int itemId = item.getItemId();
+            // Inflate custom menu layout
+            View popupView = LayoutInflater.from(view.getContext()).inflate(R.layout.custom_folder_menu, null);
 
-                    if (itemId == R.id.menuEditFolder) {
-                        editFolder();
-                        return true;
-                    } else if (itemId == R.id.menuDeleteFolder) {
-                        deleteFolder();
-                        return true;
-                    } else if (itemId == R.id.menuStatisticsFolder) {
-                        showStatisticsFolder();
-                        return true;
-                    } else {
-                        return false;
-                    }
-                }
-            });
+            // Create popup window
+            final PopupWindow popupWindow = new PopupWindow(
+                    popupView,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    ViewGroup.LayoutParams.WRAP_CONTENT,
+                    true);
 
-            popupMenu.show();
+            // Set elevation for shadow effect
+            popupWindow.setElevation(10);
+
+            // Set up click listeners for menu items
+            popupView.findViewById(R.id.menuEditFolder).setOnClickListener(new SoundButtonListener(itemView.getContext(),
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            editFolder();
+                            popupWindow.dismiss();
+                        }
+                    }, R.raw.button_click, 0.3f));
+
+            popupView.findViewById(R.id.menuStatisticsFolder).setOnClickListener(new SoundButtonListener(itemView.getContext(),
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            showStatisticsFolder();
+                            popupWindow.dismiss();
+                        }
+                    }, R.raw.button_click));
+
+            popupView.findViewById(R.id.menuDeleteFolder).setOnClickListener(new SoundButtonListener(itemView.getContext(),
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            deleteFolder();
+                            popupWindow.dismiss();
+                        }
+                    }, R.raw.button_click));
+
+            // Position the popup just below and to the right of the anchor view
+            popupWindow.showAsDropDown(view, -150, 10);
         }
 
         private void editFolder() {
@@ -175,22 +197,74 @@ public class FolderListAdapter extends RecyclerView.Adapter<FolderListAdapter.Ca
 
         private void deleteFolder() {
             Context context = itemView.getContext();
+
+            // Create a custom layout for the dialog
+            View dialogView = LayoutInflater.from(context).inflate(R.layout.delete_folder_dialog, null);
+            TextView titleText = dialogView.findViewById(R.id.dialogTitle);
+            TextView messageText = dialogView.findViewById(R.id.dialogMessage);
+            Button positiveButton = dialogView.findViewById(R.id.buttonPositive);
+            Button negativeButton = dialogView.findViewById(R.id.buttonNegative);
+            ImageView warningIcon = dialogView.findViewById(R.id.warningIcon);
+
+            // Set dialog content
+            titleText.setText("Delete Folder");
+            messageText.setText("Are you sure you want to delete \"" + textTitle.getText().toString() +
+                    "\"?\n\nThis will permanently delete all words in this folder.");
+            warningIcon.setImageResource(R.drawable.ic_warning);
+
+            // Create and configure the AlertDialog with custom view
             AlertDialog.Builder builder = new AlertDialog.Builder(context);
-            builder.setTitle("Confirm Delete");
-            builder.setMessage("Are you sure you want to delete this folder?");
-            builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            builder.setView(dialogView);
+            AlertDialog alertDialog = builder.create();
+
+            // Prevent dialog from closing when touching outside
+            alertDialog.setCanceledOnTouchOutside(false);
+
+            // Set button click listeners
+            positiveButton.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(DialogInterface dialogInterface, int i) {
+                public void onClick(View v) {
+                    // Delete folder logic
                     DBHandler dbHandler = new DBHandler(itemView.getContext());
                     dbHandler.deleteFolder(folderId);
                     ArrayList<FolderModal> updatedData = dbHandler.getFolderNames();
+
+                    // Play delete sound effect
+                    new SoundButtonListener(context,
+                            new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    // Empty, just for sound
+                                }
+                            },
+                            R.raw.button_success,
+                            3.0f
+                    ).onClick(null);
+
+                    // Notify adapter of changes
                     if (folderDeletedListener != null) {
                         folderDeletedListener.onFolderDeleted(updatedData);
                     }
+
+                    // Show confirmation toast
+                    Toast.makeText(context, "Folder Deleted!", Toast.LENGTH_SHORT).show();
+
+                    // Dismiss the dialog
+                    alertDialog.dismiss();
                 }
             });
-            builder.setNegativeButton("No", null);
-            builder.show();
+
+            negativeButton.setOnClickListener(new SoundButtonListener(context,
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Just dismiss the dialog
+                            alertDialog.dismiss();
+                        }
+                    }, R.raw.button_back, 0.3f));
+
+            // Show the custom dialog
+            alertDialog.show();
         }
 
         private void showStatisticsFolder() {

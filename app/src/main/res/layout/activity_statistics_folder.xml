@@ -1,72 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
+    android:background="@drawable/bg_stars"
     tools:context=".ui.score.StatisticsFolderActivity">
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/bgStars"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/bg_stars"
+        android:scaleType="centerCrop"
+        android:adjustViewBounds="true"
+        android:scaleX="1.7"
+        android:scaleY="1.7"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:id="@+id/textViewTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Folder Statistics"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="40dp"
+        android:fontFamily="@font/upheavtt"
+        android:letterSpacing="0.08"
+        android:shadowColor="#5D2800"
+        android:shadowDx="3"
+        android:shadowDy="3"
+        android:shadowRadius="3"
+        android:text="FOLDER STATISTICS"
+        android:textAlignment="center"
+        android:textColor="#FFD700"
+        android:textSize="38sp"
+        android:textStyle="bold" />
 
     <TextView
         android:id="@+id/textFolderName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@id/textViewTitle"
         android:layout_marginTop="8dp"
-        android:textSize="20sp"
+        android:fontFamily="@font/pxo"
+        android:textSize="22sp"
         android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textViewTitle"
+        android:textColor="#FFD700"
+        android:layout_centerHorizontal="true"
         tools:text="Folder Name" />
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewStats"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/textFolderName"
         android:layout_marginTop="32dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textFolderName">
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="6dp"
+        app:cardBackgroundColor="@android:color/transparent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/about_card_pixel"
             android:orientation="vertical"
-            android:padding="16dp">
+            android:padding="18dp">
 
+            <!-- Statistic rows -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:paddingVertical="6dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/pxo"
                     android:text="Total Attempts:"
-                    android:textSize="16sp" />
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textAttempts"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:fontFamily="@font/pxo"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="0" />
             </LinearLayout>
@@ -74,27 +101,30 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DDDDDD" />
+                android:background="#FFD700" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:paddingVertical="6dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/pxo"
                     android:text="Correct Answers:"
-                    android:textSize="16sp" />
+                    android:textColor="#4CAF50"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textCorrect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/pxo"
                     android:textColor="#4CAF50"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="0" />
             </LinearLayout>
@@ -102,27 +132,30 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DDDDDD" />
+                android:background="#FFD700" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:paddingVertical="6dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/pxo"
                     android:text="Incorrect Answers:"
-                    android:textSize="16sp" />
+                    android:textColor="#F44336"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textIncorrect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/pxo"
                     android:textColor="#F44336"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="0" />
             </LinearLayout>
@@ -130,26 +163,30 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DDDDDD" />
+                android:background="#FFD700" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:paddingVertical="6dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/pxo"
                     android:text="Accuracy:"
-                    android:textSize="16sp" />
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textAccuracy"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:fontFamily="@font/pxo"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="0%" />
             </LinearLayout>
@@ -157,26 +194,30 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DDDDDD" />
+                android:background="#FFD700" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:paddingVertical="6dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:fontFamily="@font/pxo"
                     android:text="Highest Score:"
-                    android:textSize="16sp" />
+                    android:textColor="#000000"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textHighestScore"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="16sp"
+                    android:fontFamily="@font/pxo"
+                    android:textColor="#000000"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="0" />
             </LinearLayout>
@@ -184,27 +225,30 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DDDDDD" />
+                android:background="#FFD700" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:paddingVertical="6dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Avg. Correct per Attempt:"
-                    android:textSize="16sp" />
+                    android:fontFamily="@font/pxo"
+                    android:text="Avg. Correct/Attempt:"
+                    android:textColor="#4CAF50"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textAvgCorrect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/pxo"
                     android:textColor="#4CAF50"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="0.0" />
             </LinearLayout>
@@ -212,51 +256,89 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#DDDDDD" />
+                android:background="#FFD700" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="8dp">
+                android:paddingVertical="6dp">
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Avg. Incorrect per Attempt:"
-                    android:textSize="16sp" />
+                    android:fontFamily="@font/pxo"
+                    android:text="Avg. Incorrect/Attempt:"
+                    android:textColor="#F44336"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:id="@+id/textAvgIncorrect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/pxo"
                     android:textColor="#F44336"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     tools:text="0.0" />
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
-    <Button
-        android:id="@+id/buttonResetStats"
+    <LinearLayout
+        android:id="@+id/buttonRow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="32dp"
-        android:text="Reset Statistics"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardViewStats" />
+        android:layout_below="@id/cardViewStats"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:orientation="horizontal"
+        android:gravity="center">
 
-    <Button
-        android:id="@+id/buttonReturn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Return to Folders"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonResetStats" />
+        <Button
+            android:id="@+id/buttonResetStats"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_pixel"
+            android:backgroundTint="@null"
+            android:fontFamily="@font/upheavtt"
+            android:text="RESET"
+            android:textAllCaps="true"
+            android:textColor="#FFD700"
+            android:textSize="18sp"
+            android:theme="@style/Theme.MyPixelApp"
+            android:shadowColor="#5D2800"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2"
+            android:layout_marginEnd="12dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/buttonReturn"
+            android:layout_width="140dp"
+            android:layout_height="50dp"
+            android:background="@drawable/button_pixel"
+            android:backgroundTint="@null"
+            android:fontFamily="@font/upheavtt"
+            android:text="DONE"
+            android:textAllCaps="true"
+            android:textColor="#FFD700"
+            android:textSize="18sp"
+            android:theme="@style/Theme.MyPixelApp"
+            android:shadowColor="#5D2800"
+            android:shadowDx="2"
+            android:shadowDy="2"
+            android:shadowRadius="2" />
+    </LinearLayout>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/gifMarioDance"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="18dp"
+        android:src="@drawable/mario_dance" />
+
+</RelativeLayout>

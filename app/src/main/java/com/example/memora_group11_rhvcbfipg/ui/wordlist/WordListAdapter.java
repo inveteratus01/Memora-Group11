@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
@@ -17,6 +18,7 @@ import com.example.memora_group11_rhvcbfipg.database.DBHandler;
 import com.example.memora_group11_rhvcbfipg.modal.WordModal;
 import com.example.memora_group11_rhvcbfipg.ui.forms.FolderFormActivity;
 import com.example.memora_group11_rhvcbfipg.ui.forms.WordFormActivity;
+import com.example.memora_group11_rhvcbfipg.utils.SoundButtonListener;
 
 import java.util.ArrayList;
 
@@ -67,27 +69,40 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ItemVi
     }
 
     public void showContextMenu(View view) {
+        // Inflate custom menu layout
+        View popupView = LayoutInflater.from(context).inflate(R.layout.custom_word_menu, null);
 
-        PopupMenu popupMenu = new PopupMenu(context, view);
-        popupMenu.getMenuInflater().inflate(R.menu.word_card_menu, popupMenu.getMenu());
-        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(MenuItem item) {
-                int itemId = item.getItemId();
+        // Create popup window
+        final PopupWindow popupWindow = new PopupWindow(
+                popupView,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT,
+                true);
 
-                if (itemId == R.id.menuEditWord) {
-                    editWord();
-                    return true;
-                } else if (itemId == R.id.menuDeleteWord) {
-                    deleteWord();
-                    return true;
-                } else {
-                    return false;
-                }
-            }
-        });
+        // Set elevation for shadow effect
+        popupWindow.setElevation(10);
 
-        popupMenu.show();
+        // Set up click listeners for menu items with sound
+        popupView.findViewById(R.id.menuEditWord).setOnClickListener(new SoundButtonListener(context,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        editWord();
+                        popupWindow.dismiss();
+                    }
+                }, R.raw.button_click));
+
+        popupView.findViewById(R.id.menuDeleteWord).setOnClickListener(new SoundButtonListener(context,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        deleteWord();
+                        popupWindow.dismiss();
+                    }
+                }, R.raw.button_click));
+
+        // Position the popup just below and to the right of the anchor view
+        popupWindow.showAsDropDown(view, -150, 10);
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder {
