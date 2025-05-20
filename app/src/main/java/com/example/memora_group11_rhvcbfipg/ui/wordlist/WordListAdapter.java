@@ -1,11 +1,13 @@
 package com.example.memora_group11_rhvcbfipg.ui.wordlist;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
@@ -25,6 +27,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ItemVi
     private DBHandler dbHandler;
     private int selectedPosition;
 
+    ImageView wordMenuIcon;
+
     public WordListAdapter(ArrayList<WordModal> wordModalArrayList, Context context) {
         this.wordModalArrayList = wordModalArrayList;
         this.context = context;
@@ -43,14 +47,18 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ItemVi
         WordModal item = wordModalArrayList.get(position);
         holder.bind(item);
 
+        wordMenuIcon = holder.itemView.findViewById(R.id.wordMenuIcon);
+
         // Set a click listener on the view to show the context menu
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
+        wordMenuIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selectedPosition = holder.getAdapterPosition();
                 showContextMenu(view);
             }
         });
+
+
     }
 
     @Override
