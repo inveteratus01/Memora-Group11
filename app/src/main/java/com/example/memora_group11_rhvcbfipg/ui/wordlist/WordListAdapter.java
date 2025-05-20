@@ -1,6 +1,7 @@
 package com.example.memora_group11_rhvcbfipg.ui.wordlist;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
@@ -31,6 +32,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ItemVi
 
     ImageView wordMenuIcon;
 
+    AlertDialog.Builder builder;
+    AlertDialog dialog;
     public WordListAdapter(ArrayList<WordModal> wordModalArrayList, Context context) {
         this.wordModalArrayList = wordModalArrayList;
         this.context = context;
@@ -134,10 +137,30 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ItemVi
     private void deleteWord() {
         if(selectedPosition != RecyclerView.NO_POSITION){
             WordModal selectedWord = wordModalArrayList.get(selectedPosition);
-            dbHandler.deleteWord(selectedWord.getId());
-            wordModalArrayList.remove(selectedPosition);
-            notifyItemRemoved(selectedPosition);
-            notifyItemRangeChanged(selectedPosition, wordModalArrayList.size());
+
+            builder =  new AlertDialog.Builder(context);
+            builder.setTitle("Delete Word");
+            builder.setMessage("Are you sure you want to delete \"" + selectedWord.getWord() + "\"?");
+
+            // Add confirm button with sound
+            builder.setPositiveButton("Delete", (dialog, which) -> {
+
+                // Delete the word
+                dbHandler.deleteWord(selectedWord.getId());
+                wordModalArrayList.remove(selectedPosition);
+                notifyItemRemoved(selectedPosition);
+                notifyItemRangeChanged(selectedPosition, wordModalArrayList.size());
+            });
+
+            // Add cancel button with sound
+            builder.setNegativeButton("Cancel", (dialog, which) -> {
+                // Play sound
+                dialog.dismiss();
+            });
+
+            // Create and show the dialog
+            dialog = builder.create();
+            dialog.show();
         }
     }
 }
