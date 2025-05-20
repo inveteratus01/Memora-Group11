@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.recyclerview.widget.RecyclerView;
@@ -150,6 +152,8 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ItemVi
                 wordModalArrayList.remove(selectedPosition);
                 notifyItemRemoved(selectedPosition);
                 notifyItemRangeChanged(selectedPosition, wordModalArrayList.size());
+
+                Toast.makeText(context, "Word deleted successfully!", Toast.LENGTH_SHORT).show();
             });
 
             // Add cancel button with sound
