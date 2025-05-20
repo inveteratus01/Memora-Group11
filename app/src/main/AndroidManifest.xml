@@ -14,33 +14,39 @@
         tools:targetApi="31">
         <activity
             android:name=".ui.score.StatisticsFolderActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.statistics.FolderStatisticsActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.about.AboutActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.cardflip.CardFlip"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.score.ScoreActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.wordlist.WordListActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.forms.WordFormActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.forms.FolderFormActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".ui.folderlist.FolderListActivity"
+            android:screenOrientation="portrait"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
