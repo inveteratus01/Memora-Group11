@@ -54,7 +54,9 @@
             android:layout_alignParentEnd="true"
             android:layout_marginTop="4dp"
             android:contentDescription="Menu options"
-            android:src="@android:drawable/ic_menu_more"
-            app:tint="#FFD700" />
+            android:src="@drawable/menu_icon_selector"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless" />
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
