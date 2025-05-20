@@ -20,7 +20,7 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginBottom="20dp"
             android:src="@drawable/ic_warning"
-            app:tint="#FF9800" />
+            app:tint="#FFD70040" />
 
         <TextView
             android:id="@+id/dialogTitle"
@@ -43,6 +43,7 @@
             android:gravity="center"
             android:lineSpacingExtra="4dp"
             android:text="Are you sure you want to reset all statistics for this folder? This action cannot be undone."
+            android:textColor="@color/black"
             android:textSize="16sp" />
 
         <LinearLayout
@@ -69,7 +70,7 @@
                 android:layout_height="56dp"
                 android:layout_marginStart="12dp"
                 android:layout_weight="1"
-                android:background="?attr/colorError"
+                android:background="#FFD70040"
                 android:fontFamily="@font/upheavtt"
                 android:text="RESET"
                 android:textSize="16sp" />

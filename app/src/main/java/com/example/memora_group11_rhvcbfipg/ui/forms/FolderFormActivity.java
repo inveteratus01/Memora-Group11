@@ -45,16 +45,16 @@ public class FolderFormActivity extends AppCompatActivity {
                         String folderName = folderNameEditText.getText().toString();
 
                         if (folderName.isEmpty()) {
-                            Toast.makeText(FolderFormActivity.this, "Please enter folder name", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FolderFormActivity.this, "Please enter folder name!", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
                         if (folderIdToUpdate != -1) {
                             dbhandler.updateFolderName(folderIdToUpdate, folderName);
-                            Toast.makeText(FolderFormActivity.this, "Folder has been updated", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FolderFormActivity.this, "Folder Updated Successfully!", Toast.LENGTH_SHORT).show();
                         } else {
                             dbhandler.addFolder(folderName);
-                            Toast.makeText(FolderFormActivity.this, "Folder has been created", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(FolderFormActivity.this, "Folder Created Successfully!", Toast.LENGTH_SHORT).show();
                         }
                         redirectToFolderList();
                     }

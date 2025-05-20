@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/upheavtt"
             android:gravity="center"
-            android:text="Delete Folder"
+            android:text="Delete Word"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold" />
@@ -41,7 +41,7 @@
             android:fontFamily="@font/pxo"
             android:gravity="center"
             android:lineSpacingExtra="4dp"
-            android:text="Are you sure you want to delete this folder?"
+            android:text="Are you sure you want to delete this word?"
             android:textColor="@color/black"
             android:textSize="16sp" />
 

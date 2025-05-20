@@ -79,6 +79,16 @@ public class FolderListAdapter extends RecyclerView.Adapter<FolderListAdapter.Ca
                         context.startActivity(intent);
                     }
                 }, R.raw.button_click));
+
+        // Set click listener with sound on the menu icon
+        ImageView menuIcon = holder.itemView.findViewById(R.id.menuIcon);
+        menuIcon.setOnClickListener(new SoundButtonListener(context,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        holder.showContextMenu(view);
+                    }
+                }, R.raw.button_click, 0.3f));
     }
 
     @Override
@@ -247,7 +257,7 @@ public class FolderListAdapter extends RecyclerView.Adapter<FolderListAdapter.Ca
                     }
 
                     // Show confirmation toast
-                    Toast.makeText(context, "Folder Deleted!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "Folder Deleted Successfully!", Toast.LENGTH_SHORT).show();
 
                     // Dismiss the dialog
                     alertDialog.dismiss();

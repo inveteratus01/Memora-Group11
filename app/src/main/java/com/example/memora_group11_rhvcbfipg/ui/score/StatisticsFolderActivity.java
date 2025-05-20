@@ -79,12 +79,13 @@ public class StatisticsFolderActivity extends AppCompatActivity {
                 }, R.raw.button_back, 0.4f));
 
         Button buttonResetStats = findViewById(R.id.buttonResetStats);
-        buttonResetStats.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                confirmResetStatistics();
-            }
-        });
+        buttonResetStats.setOnClickListener(new SoundButtonListener(this,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        confirmResetStatistics();
+                    }
+                }, R.raw.button_click));
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
@@ -207,7 +208,7 @@ public class StatisticsFolderActivity extends AppCompatActivity {
             ).onClick(null); // Manually trigger the sound
 
             // Optional: Show confirmation toast
-            Toast.makeText(this, "Statistics reset successfully!", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Statistics Reset Successfully!", Toast.LENGTH_SHORT).show();
         }
     }
 }

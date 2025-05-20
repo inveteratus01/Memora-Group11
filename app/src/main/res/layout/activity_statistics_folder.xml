@@ -114,7 +114,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/pxo"
-                    android:text="Correct Answers:"
+                    android:text="Total Correct Answers:"
                     android:textColor="#4CAF50"
                     android:textSize="18sp" />
 
@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:fontFamily="@font/pxo"
-                    android:text="Incorrect Answers:"
+                    android:text="Total Incorrect Answers:"
                     android:textColor="#F44336"
                     android:textSize="18sp" />
 

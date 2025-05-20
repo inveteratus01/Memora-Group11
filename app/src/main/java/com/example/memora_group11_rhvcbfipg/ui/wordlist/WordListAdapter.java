@@ -56,16 +56,15 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ItemVi
 
         wordMenuIcon = holder.itemView.findViewById(R.id.wordMenuIcon);
 
-        // Set a click listener on the view to show the context menu
-        wordMenuIcon.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                selectedPosition = holder.getAdapterPosition();
-                showContextMenu(view);
-            }
-        });
-
-
+        // Set a click listener on the view to show the context menu with sound
+        wordMenuIcon.setOnClickListener(new SoundButtonListener(context,
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        selectedPosition = holder.getAdapterPosition();
+                        showContextMenu(view);
+                    }
+                }, R.raw.button_click));
     }
 
     @Override
@@ -137,33 +136,54 @@ public class WordListAdapter extends RecyclerView.Adapter<WordListAdapter.ItemVi
     }
 
     private void deleteWord() {
-        if(selectedPosition != RecyclerView.NO_POSITION){
+        if(selectedPosition != RecyclerView.NO_POSITION) {
             WordModal selectedWord = wordModalArrayList.get(selectedPosition);
 
-            builder =  new AlertDialog.Builder(context);
-            builder.setTitle("Delete Word");
-            builder.setMessage("Are you sure you want to delete \"" + selectedWord.getWord() + "\"?");
+            // Inflate the custom dialog layout
+            View dialogView = LayoutInflater.from(context).inflate(R.layout.delete_word_dialog, null);
 
-            // Add confirm button with sound
-            builder.setPositiveButton("Delete", (dialog, which) -> {
+            // Create the dialog
+            AlertDialog.Builder builder = new AlertDialog.Builder(context);
+            builder.setView(dialogView);
+            AlertDialog dialog = builder.create();
 
-                // Delete the word
-                dbHandler.deleteWord(selectedWord.getId());
-                wordModalArrayList.remove(selectedPosition);
-                notifyItemRemoved(selectedPosition);
-                notifyItemRangeChanged(selectedPosition, wordModalArrayList.size());
+            // Set transparent background
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
 
-                Toast.makeText(context, "Word deleted successfully!", Toast.LENGTH_SHORT).show();
-            });
+            // Find views
+            TextView dialogMessage = dialogView.findViewById(R.id.dialogMessage);
+            com.google.android.material.button.MaterialButton buttonNegative = dialogView.findViewById(R.id.buttonNegative);
+            com.google.android.material.button.MaterialButton buttonPositive = dialogView.findViewById(R.id.buttonPositive);
 
-            // Add cancel button with sound
-            builder.setNegativeButton("Cancel", (dialog, which) -> {
-                // Play sound
-                dialog.dismiss();
-            });
+            // Set message with word name
+            dialogMessage.setText("Are you sure you want to delete \"" + selectedWord.getWord() +
+                    "\"?\n\nThis will permanently this item.");
 
-            // Create and show the dialog
-            dialog = builder.create();
+            // Set button click listeners with sound
+            buttonNegative.setOnClickListener(new SoundButtonListener(context,
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                        }
+                    }, R.raw.button_back, 0.4f));
+
+            buttonPositive.setOnClickListener(new SoundButtonListener(context,
+                    new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            // Delete the word
+                            dbHandler.deleteWord(selectedWord.getId());
+                            wordModalArrayList.remove(selectedPosition);
+                            notifyItemRemoved(selectedPosition);
+                            notifyItemRangeChanged(selectedPosition, wordModalArrayList.size());
+
+                            Toast.makeText(context, "Word Deleted Successfully!", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    }, R.raw.button_success, 3.0f));
+
+            // Show dialog
             dialog.show();
         }
     }

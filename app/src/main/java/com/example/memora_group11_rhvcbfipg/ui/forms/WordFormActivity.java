@@ -60,19 +60,19 @@ public class WordFormActivity extends AppCompatActivity {
                         int folderId = getFolderIdFromSharedPreferences();
 
                         if (word.isEmpty() || description.isEmpty()) {
-                            Toast.makeText(WordFormActivity.this, "Please enter all values", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WordFormActivity.this, "Please enter all values!", Toast.LENGTH_SHORT).show();
                             return;
                         }
 
                         if (wordIdToUpdate != -1) {
                             // Update existing word
                             dbhandler.updateWord(wordIdToUpdate, word, description);
-                            Toast.makeText(WordFormActivity.this, "Word has been updated", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WordFormActivity.this, "Word Updated Successfully!", Toast.LENGTH_SHORT).show();
                             finish(); // Return to word list
                         } else {
                             // Add new word
                             dbhandler.addWord(folderId, word, description);
-                            Toast.makeText(WordFormActivity.this, "Word has been added", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(WordFormActivity.this, "Word Added Successfully!", Toast.LENGTH_SHORT).show();
                             wordEditText.setText("");
                             descriptionEditText.setText("");
                         }
